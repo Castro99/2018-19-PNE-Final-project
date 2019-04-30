@@ -1,0 +1,162 @@
+<div class="col-6">
+    <div class="card text-center">
+        <div class="card-header">
+            List of all the availables species on the database
+        </div>
+        <div class="card-body">
+            <form action="listSpecies" method="get">
+                <div class="form-group row">
+                    <label for="inputLimit" class="col-form-label">You can restrict the length of the list</label>
+                    <div class="col-sm-4">
+                    <input type="number" class="form-control" name="limit" min="0" max="199" id="inputLimit">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            Length of a specific chromosome
+        </div>
+    </div>
+</div>
+<div class="col-6">
+
+    <div class="card text-center">
+         <div class="card-header">
+           Information about the karyotype of a species
+         </div>
+    <div class="card-body">
+         <form action="karyotype" method="get">
+             <div class="form-group row">
+                <label for="inputLimit" class="col-form-label">Karyotype species information</label>
+                <div class="col-sm-4">
+                  <input type="text"  name="specie">
+                </div>
+             </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+     <div class="card-footer text-muted">
+        Sequence of a human gene
+     </div>
+    </div>
+</div>
+ <div class="col-6">
+        <div class="card text-center">
+            <div class="card-header">
+                    Length of the chromosome
+            </div>
+            <div class="card-body">
+                <form action="chromosomeLength" method="get">
+                    <div class="form-group row">
+                        <label for="chromosomeLength" class="col-form-label">Introduce specie</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="specie" id="chromosomeLength">
+                        </div>
+                        <label for="chromosome" class="col-form-label">Introduce chromosome </label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="chromo" id="chromosome">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enter</button>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                Sequence Gene
+            </div>
+        </div>
+    </div>
+            <div class="col-6">
+                <div class="card text-center">
+                    <div class="card-header">
+                            Info human gene
+                    </div>
+                    <div class="card-body">
+                        <form action="geneInfo" method="get">
+                            <div class="form-group row">
+                                <label for="inputgeneInfo" class="col-form-label">Enter Gene</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="gene" id="inputgeneInfo">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enter</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Information
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Human gene calculation
+                    </div>
+                    <div class="card-body">
+                        <form action="geneCalc" method="get">
+                            <div class="form-group row">
+                                <label for="inputgeneCalc" class="col-form-label">Introduce human gene for calculation</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="gene"  id="inputgeneCalc">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enter</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Calculations
+                    </div>
+                </div>
+            </div>
+            <div class="col-6"  >
+                <div class="card text-center">
+                    <div class="card-header">
+                        Human sequence gene
+                    </div>
+                    <div class="card-body">
+                        <form action="geneSeq" method="get">
+                            <div class="form-group row">
+                                <label for="inputgeneSeq" class="col-form-label">Introduce gene</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="gene"  id="inputgeneSeq">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enter</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Human gen sequence
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <div class="card text-center">
+                    <div class="card-header">
+                            Human genome genes from specific area
+                    </div>
+                    <div class="card-body">
+                        <form action="geneList" method="get">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label for="inputchromosome" class="col-form-label">Introduce chromosome</label>
+                                    <input type="text" class="form-control" name="chromo" id="inputchromosome">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="inputstart" class="col-form-label">Start</label>
+                                    <input type="number" class="form-control" name="start" id="inputstart">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="inputend" class="col-form-label">End</label>
+                                    <input type="number" class="form-control" name="end" id="inputend">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enter</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Length of a specific specie and chromosome
+                    </div>
+                </div>
+            </div>
