@@ -11,8 +11,8 @@ headers = {"Content-Type": "application/json"}
 
 socketserver.TCPServer.allow_reuse_address = True
 
-# this is the future html file that will be sent to the client
-# It has blank spaces that will be filled later
+# We open the template where our results will be provided and also we open the error
+#Both of them are just HTML files but they only have a call to a function that will be develop while running the server
 
 with open('template.html', 'r') as f:
     template: str = f.read()
@@ -20,144 +20,107 @@ with open('template.html', 'r') as f:
 with open('Error.html', 'r') as f:
     templateError: str = f.read()
 
-
+#Basic structure from Lesson 17 of JSON & API
+# Class with our Handler. It is a called derived from BaseHTTPRequestHandler
+# It means that our class inheritates all his methods and properties
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
+        """This method is called whenever the client invokes the GET method
+                in the HTTP protocol request"""
 
+        # Print the request line
         termcolor.cprint(self.requestline, 'green')
+        #Parser the path
         resource = self.path
         list_resource = resource[1:resource.find('?')]
-
+        #Just to see if it working we will print the list_resource
         print(list_resource)
 
         try:
             if resource == '/':
 
-                # HTTP Response
+                # --OK RESPONSE
                 resp = 200
-                # The title of the html file is different in each case
+                # We define the title and header that will later be place in the template html
                 title = 'GENOME'
                 h = 'Information for the human and other vertebrates genome'
 
-                # This is the first html file that is sent to the client
+                # Will open the home html (Index) were the user must operate
                 with open('home.html', 'r') as f:
                     content = f.read()
 
-                # Include the information in the future html response text
+                # We fill the template html with the title and header previously define
                 info = template.format(title, title, h, content)
 
+            # --Perform of List species parameter
             elif list_resource == 'listSpecies':
 
                 resp = 200
-                # Process the client's request using the request module
+                # We established the connection between our project and the web page where all the information comes out
                 link = host + URL[0]
                 r = requests.get(link, headers=headers)
                 json_code = r.json()
 
-                # Limit to the length of the list selected by the user
+                # Now we develop the code if the user wants to limit the list (OPTIONAL) and other possible results
                 try:
                     if 'json=1' in resource:
-                        # In case that the user hasn't introduced any limit while writing the URL in the browser
-                        # otherwise, the limit will be established at 1
+
                         if 'limit' not in resource:
                             limit = len(json_code['species'])
                         else:
                             limit = resource.split('=')[1].split('&')[0]
                     else:
                         limit = resource.split('=')[1]
-                # In case that the user hasn't introduced any limit while writing the URL in the browser
+
                 except IndexError:
                     limit = len(json_code['species'])
 
-                # If there is no limit entered, the limit used will be the species' list's length
                 if limit == '':
                     limit = len(json_code['species'])
 
+                # We will pick all the species print on the list and introduce in an array
                 add = ''
                 dictionary = {}
                 limit_passed = False
-
+                # Now we estblished the limit
                 if int(limit) > 199:
+                    # We develop and alert using bootstrap structure
                     add += '<div class="alert alert-danger" role="alert"><h4 class="alert-heading">You surpass the maximun length of 199</h4>Maximun of species</div>'
                     limit = 199
                     limit_passed = True
-
-                add += '<table class="table"><thead><tr><th scope="col">Species name</th><th scope="col">Normal name</th></tr></thead><tbody>'
+                    # We will intoduce our result with the form of a table
+                add += '<table class="table"><thead><tr><th scope="col">Scientific name</th><th scope="col">Comman name</th></tr></thead><tbody>'
 
                 for i in range(int(limit)):
 
-                    # I add the information in form of a string in case the user wants it like that and in form of a
-                    # dictionary if the user wants a json
+                    # We perform our variables in the form of a table and introduce it in a dictionary (JSON)
                     common = json_code['species'][i]['common_name']
-                    #add += 'Species name: {} \nNormal name: {}\n\n'.format(json_code['spe'][i]['name'], normal)
+                    # We will intoduce our result with the form of a table
                     add += '<tr><td>{}</td><td>{}</td></tr>'.format(json_code['species'][i]['name'], common)
                     dictionary.update([(str(i+1), {'common_name': common, 'scientific_name': json_code['species'][i]['name']})])
 
                 add += '</tbody></table>'
-
+                #In the case you surpass the established limit you will be notified
                 if limit_passed:
                     dictionary.update([('0', {'You surpass the maximun length of 199'})])
-
-                # The title of the html file is different in each case
+                # We define the title and header that will later be place in the template html
                 title = 'Species'
                 h = 'Available species on the database'
-
-                # Include the information in the future html response text
+                # We fill the template html with the title and header previously define
                 info = template.format(title, title, h, add)
-
-            elif list_resource == 'karyotype' :
-
-                resp = 200
-                if 'json=1' in resource:
-                    specie = resource.split('=')[1].split('&')[0]
-                else:
-                    specie = resource.split('=')[1]
-
-                link = host + URL[1] + '/' + specie + "?"
-                r = requests.get(link, headers=headers)
-
-                # In case that the species' name is not on the database
-                # the client will receive a response message indicating so
-                dictionary = {}
-                if r.ok:
-                    json_code = r.json()
-                    add = ''
-
-                    if not json_code['karyotype']:
-                        add = "Karyotipe not found"
-                        dictionary.update([('Error', 'Karyotype not found')])
-                    else:
-                        add += '<div class="col-6">'
-                        add += '<table class="table"><thead><tr><th scope="col">#</th><th scope="col">Chromosome</th></tr></thead><tbody>'
-
-                        for i, code in enumerate(json_code['karyotype']):
-                            #add += 'Chromosome number {}: {}\n'.format(str(i + 1), code)
-                            add += '<tr><td>{}</td><td>{}</td></tr>'.format(str(i + 1), code)
-                            dictionary.update([(str(i), code)])
-
-                        add += '</tbody></table>'
-                        add += '</div>'
-                else:
-                    add = 'Species name {} not found ""'.format(specie)
-                    dictionary.update([('NOT FOUND', 'Species {} name not found'.format(specie))])
-
-                # Like before, I include the title myself
-                title = 'Karyotype'
-                h = 'karyotype of {}'.format(resource.split('=')[1])
-                info = template.format(title, title, h, add)
-
+            # --Perform of Chromosome length parameter
             elif list_resource == 'chromosomeLength':
-
+                # --OK RESPONSE
                 resp = 200
-                # In this case, I receive two mandatory endpoints: "species" and "chromo"
+                # We define the variable specie and chromo for both outputs depending on what of them the user pick
                 if 'json=1' in resource:
                     specie = resource.split('&')[0].split('=')[1].split('&')[0]
                     chromo = resource.split('&')[1].split('=')[1].split('&')[0]
                 else:
                     specie = resource.split('&')[0].split('=')[1]
                     chromo = resource.split('&')[1].split('=')[1]
-                # Process the request
+                # We established the connection between our project and the web page where all the information comes out (REQUEST)
                 link = host + URL[1] + '/' + specie + '/' + chromo + '?'
                 r = requests.get(link, headers=headers)
 
@@ -170,10 +133,139 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     add = 'Specie "{}" chromosome "{}" not found'.format(specie, chromo)
                     dictionary.update([('Error', 'Specie {} chromosome {} not found'.format(specie, chromo))])
 
-                # Include the information in my future html file
+                # We define the title and header that will later be place in the template html
                 title = 'Chromosome length'
                 h = 'Introduce specie {} & chromosome length {}'.format(specie, chromo)
-                info = template.format(title,title, h, add)
+                # We fill the template html with the title and header previously define
+                info = template.format(title, title, h, add)
+
+            # --Perform of Karyotipe parameter
+            elif list_resource == 'karyotype' :
+                #--OK RESPONSE
+                resp = 200
+                #We define the variable specie in booth cases depending on what of the two of them the user pick
+                if 'json=1' in resource:
+                    specie = resource.split('=')[1].split('&')[0]
+                else:
+                    specie = resource.split('=')[1]
+                # We established the connection between our project and the web page where all the information comes out
+                link = host + URL[1] + '/' + specie + "?"
+                r = requests.get(link, headers=headers)
+
+                # The user will be notified if the karyotipe of a specie is not found
+                dictionary = {}
+                if r.ok:
+                    json_code = r.json()
+                    add = ''
+
+                    if not json_code['karyotype']:
+                        add = "Karyotipe not found"
+                        dictionary.update([('Error', 'Karyotype not found')])
+                    else:
+                        #Bootstrap structure to separate a row in two (col-6 half of a row)
+                        add += '<div class="col-6">'
+                        #Table for the chromosome and its number
+                        add += '<table class="table"><thead><tr><th scope="col">Number(#)</th><th scope="col">Chromosome</th></tr></thead><tbody>'
+
+                        for i, code in enumerate(json_code['karyotype']):
+                            # Table with chromosome and its number
+                            add += '<tr><td>{}</td><td>{}</td></tr>'.format(str(i + 1), code)
+                            dictionary.update([(str(i), code)])
+                        # We add the body of the table
+                        add += '</tbody></table>'
+                        add += '</div>'
+                else:
+                    # We perform our variables in the form of a table and introduce it in a dictionary (JSON)
+                    add = 'Species name {} not found ""'.format(specie)
+                    dictionary.update([('Warning', 'Species {} name not found'.format(specie))])
+
+                # We define the title and header that will later be place in the template html
+                title = 'Karyotype'
+                h = 'karyotype of {}'.format(resource.split('=')[1])
+                # We fill the template html with the title and header previously define
+                info = template.format(title, title, h, add)
+
+            elif list_resource == 'geneSeq':
+                resp = 200
+                if 'json=1' in resource:
+                    gene = resource.split('=')[1].split('&')[0]
+                else:
+                    gene = resource.split('=')[1]
+                link = host + URL[4].format(gene)
+                dictionary = {}
+                r = requests.get(link, headers=headers)
+
+                json_code = r.json()
+                id = json_code[0]['id']
+
+                link = host + URL[5].format(id)
+                r2 = requests.get(link, headers=headers)
+                json_code2 = r2.json()
+
+                add = json_code2['seq']
+                dictionary.update([('sequence', json_code2['seq'])])
+
+                title = 'Gene {} seq'.format(gene)
+                h = 'Sequence of gene {}'.format(gene)
+                info = template.format(title, title, h, add)
+
+            elif list_resource == 'geneInfo':
+                resp = 200
+                if 'json=1' in resource:
+                    gene = resource.split('=')[1].split('&')[0]
+                else:
+                    gene = resource.split('=')[1]
+                link = host + URL[4].format(gene)
+                dictionary = {}
+                r = requests.get(link, headers=headers)
+
+                json_code = r.json()
+                id2 = json_code[0]['id']
+
+                link = host + URL[5].format(id2)
+                r2 = requests.get(link, headers=headers)
+                json_code2 = r2.json()
+
+                x = json_code2['desc'].split(':')
+                chromo, start, end, id2, length = x[2], x[3], x[4], json_code2['id'], json_code2['id']
+
+                add = "Start: {}\nEnd:{}\nLength: {}\nid: {}\nChromosome: {}".format(start, end, length, id2, chromo)
+                dictionary.update(
+                    [('start', start), ('end', end), ('length', length), ('id', id2), ('chromosome', chromo)])
+
+                title = 'Gene {} inf'.format(gene)
+                h = 'Information about gene {}'.format(gene)
+                info = template.format(title, title, h, add)
+
+            elif list_resource == 'geneCalc':
+                resp = 200
+                if 'json=1' in resource:
+                    gene = resource.split('=')[1].split('&')[0]
+                else:
+                    gene = resource.split('=')[1]
+                link = host + URL[4].format(gene)
+                dictionary = {}
+                r = requests.get(link, headers=headers)
+
+                json_code = r.json()
+                id3 = json_code[0]['id']
+
+                link = host + URL[5].format(id3)
+                r2 = requests.get(link, headers=headers)
+                json_code2 = r2.json()
+
+                seq = Seq(json_code2['seq'])
+                length = seq.len()
+                perc = [seq.perc('A'), seq.perc('C'), seq.perc('T'), seq.perc('G')]
+
+                add = 'Length: {}\n  % A: {}%\n   % C: {}%\n  % T: {}%\n  % G: {}%'.format(
+                    length, perc[0], perc[1], perc[2], perc[3])
+                dictionary.update([('length', length), ('perc_A', perc[0] + '%'), ('perc_C', perc[1] + '%'),
+                                   ("perc_T", perc[2] + '%'), ("perc_G", perc[3] + '%')])
+
+                title = 'Gene {} calc'.format(gene)
+                h = 'Calculations performed on gene {}'.format(gene)
+                info = template.format(title, title, h, add)
 
 
             else:
