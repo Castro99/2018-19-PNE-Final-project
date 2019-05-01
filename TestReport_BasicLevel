@@ -1,0 +1,210 @@
+Basic level
+
+Results presented in tables
+
+//LISTSPECIES
+http://localhost:8000/listSpecies?limit=
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Species</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body><div class="container"><div class=" row"><div class="col-12"><h2 class="text-center">Species</h2><p class="text-center">Available species on the database</p></div></div><div class=" row">
+	<table class="table">
+		<thead>
+			<tr>
+			// Headers of the columns
+				<th scope="col">Scientific name</th>   // column 1
+				<th scope="col">Common name</th>	// column 2
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ficedula_albicollis</td> // column 1
+				<td>Collared flycatcher</td> // column 2
+			</tr>
+			// A lot of species between
+			<tr>
+				<td>crocodylus_porosus</td>  //column 1
+				<td>Australian saltwater crocodile</td>  //column 2
+			</tr>
+		</tbody>
+	</table>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+   </pre><a href="/">Main page</a></body></html>
+
+
+http://localhost:8000/listSpecies?limit=
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Species</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body><div class="container"><div class=" row"><div class="col-12"><h2 class="text-center">Species</h2><p class="text-center">Available species on the database</p></div></div><div class=" row">
+	<table class="table">
+		<thead>
+			<tr>
+			// Headers of the columns
+				<th scope="col">Scientific name</th>   // column 1
+				<th scope="col">Common name</th>	// column 2
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>ficedula_albicollis</td>  // column 1
+				<td>Collared flycatcher</td>  // column 2
+			</tr>
+			<tr>
+				<td>castor_canadensis</td>
+				<td>American beaver</td>
+			</tr>
+		</tbody>
+	</table>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+   </pre><a href="/">Main page</a></body></html>
+
+
+//KARYOTYPE
+
+http://localhost:8000/karyotype?specie=zebrafish
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Karyotype</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Karyotype</h2>
+            <p class="text-center">karyotype of zebrafish</p>
+        </div>
+    </div>
+  <div class=" row">
+		<div class="col-6">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Number(#)</th>
+                            <th scope="col">Chromosome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td><td>2</td>
+                        </tr>
+                        //A lot of chromosomes between
+                        </tr>
+                            <tr><td>25</td><td>25</td>
+                        </tr>
+                        <tr>
+                            <td>26</td><td>MT</td>
+                        </tr>
+                    </tbody>
+            </table>
+		</div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+           </pre><a href="/">Main page</a></body></html>
+
+http://localhost:8000/karyotype?specie=human
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Karyotype</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Karyotype</h2>
+            <p class="text-center">karyotype of human</p>
+        </div>
+    </div>
+  <div class=" row">
+		<div class="col-6">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Number(#)</th>
+                            <th scope="col">Chromosome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td><td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td><td>2</td>
+                        </tr>
+
+                        (...)
+
+                        </tr>
+                            <tr><td>24</td><td>Y</td>
+                        </tr>
+                        <tr>
+                            <td>25</td><td>MT</td>
+                        </tr>
+	                </tbody>
+            </table>
+		</div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+             </pre><a href="/">Main page</a></body></html>
+
+
+
+//CHROMOSOME LENGTH
+http://localhost:8000/chromosomeLength?specie=&chromo=
+
+<!doctype html><html lang="en">  <head>    <meta charset="utf-8">    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <title>Chromosome length</title>    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body><div class="container">    <div class=" row">        <div class="col-12">           <h2 class="text-center">Chromosome length</h2>            <p class="text-center">Introduce specie  & chromosome length </p>        </div>    </div>  <div class=" row">    Specie "" chromosome "" not found  </div></div><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     </pre><a href="/">Main page</a></body></html>
+
+http://localhost:8000/chromosomeLength?specie=zebrafish&chromo=23
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Chromosome length</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Chromosome length</h2>
+            <p class="text-center">Introduce specie zebrafish & chromosome length 23</p>
+        </div>
+    </div>
+    <div class=" row">
+      46223584
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </pre><a href="/">Main page</a></body></html>
+
+http://localhost:8000/chromosomeLength?specie=zebrafish&chromo=29
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Chromosome length</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Chromosome length</h2>
+            <p class="text-center">Introduce specie zebrafish & chromosome length 29</p>
+        </div>
+    </div>
+	<div class=" row">
+		Specie "zebrafish" chromosome "29" not found
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+           </pre><a href="/">Main page</a></body></html>
+
+http://localhost:8000/chromosomeLength?specie=&chromo=X
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Chromosome length</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Chromosome length</h2>
+            <p class="text-center">Introduce specie  & chromosome length X</p>
+        </div>
+    </div>
+    <div class=" row">
+		Specie "" chromosome "X" not found
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+       </pre><a href="/">Main page</a></body></html>
