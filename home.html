@@ -10,6 +10,10 @@
                     <div class="col-sm-4">
                     <input type="number" class="form-control" name="limit" min="0" max="199" id="inputLimit">
                     </div>
+                    <div class="col-sm-12">
+                        <label class="col-form-label">Select if you want it to store it in json value </label>
+                        <input type="checkbox"  name="json" value="1">
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -28,10 +32,14 @@
     <div class="card-body">
          <form action="karyotype" method="get">
              <div class="form-group row">
-                <label for="inputLimit" class="col-form-label">Karyotype species information</label>
+                <label for="inputKaryotype" class="col-form-label">Karyotype species information</label>
                 <div class="col-sm-4">
-                  <input type="text"  name="specie">
+                  <input type="text" class="form-control" name="specie" id="inputKaryotype">
                 </div>
+                 <div class="col-sm-12">
+                     <label class="col-form-label">Select if you want it to store it in json value </label>
+                     <input type="checkbox"  name="json" value="1">
+                 </div>
              </div>
             <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -57,6 +65,10 @@
                         <div class="col-sm-2">
                             <input type="text" class="form-control" name="chromo" id="chromosome">
                         </div>
+                        <div class="col-sm-12">
+                            <label class="col-form-label">Select if you want it to store it in json value </label>
+                            <input type="checkbox"  name="json" value="1">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Enter</button>
                 </form>
@@ -78,6 +90,10 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" name="gene" id="inputgeneInfo">
                                 </div>
+                                <div class="col-sm-12">
+                                    <label class="col-form-label">Select if you want it to store it in json value </label>
+                                    <input type="checkbox"  name="json" value="1">
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Enter</button>
                         </form>
@@ -95,9 +111,13 @@
                     <div class="card-body">
                         <form action="geneCalc" method="get">
                             <div class="form-group row">
-                                <label for="inputgeneCalc" class="col-form-label">Introduce human gene for calculation</label>
+                                <label for="inputgeneCalc" class="col-form-label">Enter Gene</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" name="gene"  id="inputgeneCalc">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="col-form-label">Select if you want it to store it in json value </label>
+                                    <input type="checkbox"  name="json" value="1">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Enter</button>
@@ -116,9 +136,13 @@
                     <div class="card-body">
                         <form action="geneSeq" method="get">
                             <div class="form-group row">
-                                <label for="inputgeneSeq" class="col-form-label">Introduce gene</label>
+                                <label for="inputgeneSeq" class="col-form-label">Enter Gene</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" name="gene"  id="inputgeneSeq">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="col-form-label">Select if you want it to store it in json value </label>
+                                    <input type="checkbox"  name="json" value="1">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Enter</button>
@@ -150,6 +174,10 @@
                                 <div class="col-sm-4">
                                     <label for="inputend" class="col-form-label">End</label>
                                     <input type="number" class="form-control" name="end" id="inputend">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="col-form-label">Select if you want it to store it in json value </label>
+                                    <input type="checkbox"  name="json" value="1">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Enter</button>
