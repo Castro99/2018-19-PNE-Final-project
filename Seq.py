@@ -1,40 +1,41 @@
-class Seq:
+#Copy from previous lessons
 
-    def  __init__  (self, strbases):
+class Seq:
+    """A class for representing sequences"""
+
+    def __init__(self, strbases):
+        # this method is called every time a new object is created
 
         self.strbases = strbases
+
     def len(self):
-        return len(self.strbases)
+        return str(len(self.strbases))
 
-    def compl(self):
-        word = ''
-        for letter in self.strbases:
-            self.strbases = self.strbases.upper()
+    def complement(self):
+        seq = self.strbases
+        seq = seq.upper()
+        for x, letter in enumerate(seq):
             if letter == 'A':
-                word += 'T'
-            elif letter == 'C':
-                word += 'G'
-            elif letter == 'G':
-                word += 'C'
-            elif letter == 'T':
-                word += 'A'
-        c = Seq(word)
-        return c
-
-    def reverse(self):
-        s = self.strbases[::-1]
-        seq = Seq(s)
+                seq = seq[:x] + seq[x:].replace('A', 'T')
+            if letter == 'T':
+                seq = seq[:x] + seq[x:].replace('T', 'A')
+            if letter == 'C':
+                seq = seq[:x] + seq[x:].replace('C', 'G')
+            if letter == 'G':
+                seq = seq[:x] + seq[x:].replace('G', 'C')
         return seq
 
+    def reverse(self):
+        seq = self.strbases.upper()[::-1]
+        return seq
 
+    def count(self, base):
+        base=base.upper()
+        return str(self.strbases.upper().count(base))
 
-
-    def Count(self, base):
-        self.base = base
-        count = self.strbases.count(base)
-        return count
-
-    def perc(self, base):
-        self.base = base
-        p = round(100.0 * self.strbases.count(base) / len(self.strbases), 2)
-        return p
+    def percentage(self, base):
+        seq = self.strbases.upper()
+        base=base.upper()
+        counter= seq.count(base)
+        line = len(seq)
+        return str(round(100.0 * counter/line, 2))
