@@ -1,0 +1,159 @@
+Medium level
+
+Results presented in tables
+
+//GENESEC
+
+http://localhost:8000/geneSeq?gene=frat2
+HTML code Home Page href=Home page
+<!doctype html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Gene Sequence</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Gene Sequence</h2>  // Title of the web page (template.html)
+            <p class="text-center">Sequence of frat2</p>  // header of the web page (template.html)
+        </div>
+    </div>
+    <div class=" row">
+      <table class="table">
+		<thead>
+			<tr>
+				<th scope="col">SEQUENCE</th> // Column 1
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>AGGCGCGTGGCTCGAGTGCCTGGCGGGCTCCGGCTTCCGCGTCCGCCCCTGCTCCGGCTTCGCCCGCAGCTCCGCGCCCGCGGGCAACCAAGCCCCCAGCGAAGCCCGCACAGCTCCGGGTGCCAGGACGGGGGGCCATGCCGTGCCGGAGGGAGGAGGAAGAGGAAGCCGGCGAGGAGGCGGAGGGGGAGGAAGAGGAGGACGACAGCTTCCTCCTGCTGCAGCAGTCGGTGACGCTGGGCAGCTCGGGCGAGGTGGACCGGCTGGTGGCCCAGATCGGCGAGACGCTGCAGCTGGACGCGGCGCAGGACAGCCCGGCCTCGCCGTGCGCGCCCCCGGGGGTGCCGCTGCGGGCCCCGGGGCCCCTGGCTGCGGCGGTGCCGGCGGACAAGGCCCGGCCCCCGGCGGTGCCGCTGCTGCTGCCGCCCGCTTCGGCTGAGACGGTGGGCCCGGCGCCCTCTGGGGCCCTGCGCTGCGCCCTAGGGGACCGCGGCCGCGTGCGCGGACGCGCTGCGCCCTACTGCGTGGCGGAGGTCGCCGCAGGCCCCAGCGCGCTGCCGGGGCCGTGCCGGCGAGGATGGCTCAGGGACGCGGTCACCTCCCGCCGCTTGCAGCAGCGCCGATGGACCCAAGCCGGGGCACGCGCCGGCGACGACGACCCGCATCGGCTCCTCCAGCAGCTCGTGCTCTCGGGAAACCTCATCAAGGAAGCCGTGCGGAGACTCCAACGAGCCGTCGCCGCGGTTGCAGCCACGGGCCCCGCAAGCGCCCCTGGGCCCGGGGGAGGCCGCAGCGGACCTGACCGCATTGCCCTGCAGCCCTCAGGCTCCTTGCTCTGACGCAGGCCTCCTGGAGGAGGAAGTGGAGGCCGCTGCGTAGACCCAACAGCGTCCAGTTCCTACTAACTCTGAGCTGAAGCCGACGTCGCCAGCCTGGGAGCGACCACTTTGGCTGCGGGGAGGCGCGTGGGGAGAGATCTCAACCAGAGAAGTTACCAGCCGCGGCGAGGCCGTCGGAGAAAACTTAAGCGTGGAGAAATGTATGCGCCAGGGTGCTTCCGTGGGGCATGAGAATTTCCCGGGCCATCCAAGCCCAAGGACCTGGGATAAACTGGGAGAACTATGGCAGCTACTTGCATCGACTTGTACCTCACTTAGCCCTTGGGGGCGTCGTGAGCTTGGATTGTTTAAGGAGGGCTCAGGGGTAGGAATCGCGATGGCTTTATAACAATACTTGAAAACTAACGACACGCATACATTTTCTTATTTTCTGGTGGAGGAGCTTAGTAAGTGGTGCTACAATTGCTGTGCAAAGAAATTCCAGAGGGGAGAAGAATGTAAAAGTTTGGTGGTGGGTGGCTTGGCATTGCCCCTTTTTCCCACCGATTCGGTGGCTGGTGAAGGTGGGAGATGTGAACTCCAATTAAGGGACTGGAGAGAGGTGAAGAATTTTGCAGGTGGGAGATTTGGATTTGAATGTGGACTTGTAAATGACTTGACCTTGCCATCTGTGTTCAAGGTCACGGTTTGCTGTGGGGTTCCTGGGAGAGCTTACTCACCCCGGAGTCTTTTCTTTCTCTTGCTCCAAGAAGAGCCCTGTTGGTGCTTTACCACCGCTTGGAGTCTCCCGAGGACACAAACAGGCAGAGAGGGACGTGTAGGGAGAGTTCTTTCCTGTTTTCTGTGCTTTCCTTTTTACAGGACTCCCGGAAGGCCACTCATGGCCATGCCAGGAGCTTTCTCAGAAACAGTCATAAACGATCTCTTGAGTCTCTTTCTTGTCCTCCCAGCTGAGCTTTCTTATTCCACCCTTTCTGGTGTCTATAGGAATGCATGAGAGACCCTGGACGTTTTTCTGCTCTCTTCTGGCCCTCCATGGAGTCATGGGCCTCGGCCTCGGCGGCTCCTCACCCTCACAATTTATTTCCTCCTCCCGTGCCAGCCCTTCTTTTGTGTCTGAAACCGGTTTTAAAATGTGACTCTCCCAGAGAAGAAGCCGCTGGCTGTATGAAACTTGACGGCGCTTTTGTAAGGTGCCACCCCCAAACTTTAAGGTAGCTAAACCAATTTTTAAAAGATTCAATGGCTTGTTCATCCTCCAGATGTAGCTATTGATGTACACTTCGCAACGGAGTGTCTGAAATTGTGGTGGTCCTGATTTATAGGATTTCATAATTAAAATGTCTGCTGAATAAATTTGGCTTTTGTTTTGGA</td>  // Column 1
+			</tr>
+		</tbody
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></body></html>
+
+
+http://localhost:8000/geneSeq?gene=
+HTML code Home Page href=Home page
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>ERROR</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">ERROR</h2>  // Title of the web page (template.html)
+            <p class="text-center">Sequence of  NOT FOUND!!!!!</p>  // Header of the web page (template.html)
+        </div>
+    </div>
+    <div class=" row">
+		No Gene  Found
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></body></html>
+
+
+//GENEINFO
+
+http://localhost:8000/geneInfo?gene=FRAT2
+HTML code Home Page href=Home page
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Gene Information</title> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Gene Information</h2>  // Title of the web page (template.html)
+            <p class="text-center">Information about gene FRAT2</p>  // Header of the web page (template.html)
+        </div>
+    </div>
+    <div class=" row">
+		<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Chromo</th>  // Column 1
+				<th scope="col">Id</th>  // Column 2
+				<th scope="col">Length</th>  // Column 3
+				<th scope="col">Start Point</th>  // Column 4
+				<th scope="col">End Point</th>  // Column 5
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>10</td>  // Column 1
+				<td>ENSG00000181274</td>  // Column 2
+				<td>ENSG00000181274</td>  // Column 3
+				<td>97332497</td>  // Column 4
+				<td>97334709</td>  // Column 5
+			</tr>
+		</tbody
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></body></html>
+
+http://localhost:8000/geneInfo?gene=
+HTML code Home Page href=Home page
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>ERROR</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">ERROR</h2>  // Title of the web page (template.html)
+            <p class="text-center">Sequence of  NOT FOUND!!!!!</p>  // Header of the web page (template.html)
+        </div>
+    </div>
+    <div class=" row">
+		No Gene  Found
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></body></html>
+
+
+//GENECALC
+
+http://localhost:8000/geneCalc?gene=FRAT2
+HTML code Home Page href=Home page
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Gene Calculations</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">Gene Calculations</h2>  // Title of the web page (template.html)
+            <p class="text-center">Calculations performed on gene FRAT2</p>  // Header of the web page (template.html)
+        </div>
+    </div>
+    <div class=" row">
+        <table class="table">
+        <thead>
+                <tr><th scope="col">LENGTH</th>  // Column 1
+                <th scope="col">A (%)</th>  // Column 2
+                <th scope="col">C (%)</th>  // Column 3
+                <th scope="col">T (%)</th>  // Column 4
+                <th scope="col">G (%)</th>  // Column 5
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2213</td>  // Column 1
+                <td>18.48</td>  // Column 2
+                <td>28.38</td>  // Column 3
+                <td>21.28</td>  // Column 4
+                <td>31.86</td>  // Column 5
+            </tr>
+        </tbody>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></body></html>
+
+
+http://localhost:8000/geneCalc?gene=
+HTML code Home Page href=Home page
+
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>ERROR</title> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head><body>
+<div class="container">
+    <div class=" row">
+        <div class="col-12">
+           <h2 class="text-center">ERROR</h2>  // Title of the web page (template.html)
+            <p class="text-center">Sequence of  NOT FOUND!!!!!</p>  // Header of the web page (template.html)
+        </div>
+    </div>
+    <div class=" row">
+        No Gene  Found
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script></body></html>
