@@ -5,7 +5,7 @@ from Seq import Seq
 PORT = 8000
 
 host = 'http://rest.ensembl.org'
-URL = ["/info/species?", "/info/assembly","/overlap/region/human/{}:{}-{}?feature=gene","/xrefs/symbol/homo_sapiens/{}", "/sequence/id/{}?expand=1"]
+URLS = ["/overlap/region/human/{}:{}-{}?feature=gene","/xrefs/symbol/homo_sapiens/{}", "/sequence/id/{}?expand=1"]
 headers = {"Content-Type": "application/json"}
 
 socketserver.TCPServer.allow_reuse_address = True
@@ -50,14 +50,15 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     content = f.read()
 
                 # We fill the template html with the title and header previously define
-                info = template.format(title, title, h, content)
+                archive = template.format(title, title, h, content)
 
             # --Perform of List species parameter
             elif list_resource == 'listSpecies':
 
                 resp = 200
                 # We established the connection between our project and the web page where all the information comes out
-                link = host + URL[0]
+                URL= "/info/species?"
+                link = host + URL
                 r = requests.get(link, headers=headers)
                 json_code = r.json()
 
@@ -105,10 +106,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 if limit_passed:
                     dictionary.update([('0', {'You surpass the maximun length of 199'})])
                 # We define the title and header that will later be place in the template html
-                title = 'Species'
-                h = 'Available species on the database'
+                t = 'Species'
+                head = 'Available species on the database'
                 # We fill the template html with the title and header previously define
-                info = template.format(title, title, h, add)
+                archive = template.format(t, t, head, add)
             # --Perform of Chromosome length parameter
             elif list_resource == 'chromosomeLength':
                 # --OK RESPONSE
@@ -121,23 +122,27 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     specie = resource.split('&')[0].split('=')[1]
                     chromo = resource.split('&')[1].split('=')[1]
                 # We established the connection between our project and the web page where all the information comes out (REQUEST)
-                link = host + URL[1] + '/' + specie + '/' + chromo + '?'
+                URL = "/info/assembly"
+                link = host + URL + '/' + specie + '/' + chromo + '?'
                 r = requests.get(link, headers=headers)
 
                 dictionary = {}
                 if r.ok:
+                    # We introduce the headers of the table where are results will be post
+                    add = '<table class="table"><thead><tr><th scope="col">Length</th></tr></thead><tbody>'
                     json_code = r.json()
-                    add = json_code['length']
+                    # We complete the table with the length
+                    add +='<tr><td>{}</td></tr>'.format(json_code['length'])
                     dictionary.update([('length', json_code['length'])])
                 else:
                     add = 'Specie "{}" chromosome "{}" not found'.format(specie, chromo)
                     dictionary.update([('Error', 'Specie {} chromosome {} not found'.format(specie, chromo))])
 
                 # We define the title and header that will later be place in the template html
-                title = 'Chromosome length'
-                h = 'Introduce specie {} & chromosome length {}'.format(specie, chromo)
+                t = 'Chromosome length'
+                head = 'Introduce specie {} & chromosome length {}'.format(specie, chromo)
                 # We fill the template html with the title and header previously define
-                info = template.format(title, title, h, add)
+                archive = template.format(t, t, head, add)
 
             # --Perform of Karyotipe parameter
             elif list_resource == 'karyotype' :
@@ -149,7 +154,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 else:
                     specie = resource.split('=')[1]
                 # We established the connection between our project and the web page where all the information comes out
-                link = host + URL[1] + '/' + specie + "?"
+                URL = "/info/assembly"
+                link = host + URL + '/' + specie + "?"
                 r = requests.get(link, headers=headers)
 
                 # The user will be notified if the karyotipe of a specie is not found
@@ -180,11 +186,46 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     dictionary.update([('Warning', 'Species {} name not found'.format(specie))])
 
                 # We define the title and header that will later be place in the template html
-                title = 'Karyotype'
-                h = 'karyotype of {}'.format(resource.split('=')[1])
+                t = 'Karyotype'
+                head = 'karyotype of {}'.format(resource.split('=')[1])
                 # We fill the template html with the title and header previously define
-                info = template.format(title, title, h, add)
+                archive = template.format(t, t, head, add)
+            # --Perform of geneSeq parameter
+            elif list_resource == 'geneList':
+                #--OK RESPONSE
 
+                resp = 200
+
+                # We declared the variables (Its the same process as the one in chromosomeLength
+                chromo = resource.split('&')[0].split('=')[1]
+                start_point = resource.split('&')[1].split('=')[1]
+                end_point = resource.split('&')[2].split('=')[1]
+
+                # We established the connection between our project and the web page where all the information comes out
+                link = URLS[0].format(chromo, start_point, end_point)
+                dictionary = {}
+                # I performed it with the try and except due to the previous declarations of the variables chromo, start_point & end_point
+                try:
+                    r = requests.get(host + link, headers=headers)
+                    # Connection with the server
+                    json_code = r.json()
+                    add = ''
+                    # Table for the Gene Number  and its Name
+                    if list_resource == 'geneList':
+                        add = '<table class="table"><thead><tr><th scope="col">Gene Number </th><th scope="col">External Name</th></tr></thead><tbody>'
+                        for i in range(len(json_code)):
+                            # Table with the Gene number and its Name
+                            add += '<tr><td>{}</td><td>{}</td></tr>'.format(i, json_code[i]['external_name'])
+                            dictionary.update([(str(i), json_code[i]['external_name'])])
+                # As we use the 'TRY' we need and except or finally so i select the except and use it to perform the error
+                except Exception:
+                    add = 'No genes located in chromosome {} from start point {} & end point{}'.format(chromo, start_point, end_point)
+                    dictionary.update([('WARNING', 'No genes located in chromosome {} from start point {} & end point{}'.format(chromo, start_point, end_point))])
+                # We established a title for our template.html in case it is valid
+                t = 'List of Genes'
+                # We established a head for our template.html in case it is valid
+                head = 'Gene list of chromosome {} from {} to {}'.format(chromo, start_point, end_point)
+                archive = template.format(t,t, head, add)
             # --Perform of geneSeq parameter
             elif list_resource == 'geneSeq':
                 #--OK RESPONSE
@@ -195,7 +236,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 else:
                     ex = resource.split('=')[1]
                 # We established the connection between our project and the web page where all the information comes out
-                link1 = (host + URL[3].format(ex))
+                link1 = (host + URLS[1].format(ex))
                 dictionary = {}
                 #I performed it with the try and except due to the previous declarations of the variable ex
                 try:
@@ -205,7 +246,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     id = json_code[0]['id']
 
                     # We made it another time but this time with the intention of finding the request Info
-                    link2 = (host + URL[4].format(id))
+                    link2 = (host + URLS[2].format(id))
                     r1 = requests.get(link2, headers=headers)
                     json_code1 = r1.json()
 
@@ -218,9 +259,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
                         dictionary.update([('sequence', json_code1['seq'])])
                         # We established a title for our template.html in case it is valid
-                        title = 'Gene Sequence'
+                        t = 'Gene Sequence'
                         # We established a header for our template.html in case it is valid
-                        h = 'Sequence of {}'.format(ex)
+                        head = 'Sequence of {}'.format(ex)
 
 
                 # As we use the 'TRY' we need and except or finally so i select the except and use it to perform the error
@@ -229,10 +270,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     add = 'No Gene {} Found'.format(ex)
                     dictionary.update([('WARNING', 'No Gene {} Found'.format(ex))])
                     # Give a title to the template.html in case of error
-                    title = 'ERROR'
+                    t = 'ERROR'
                     # Give a header to the template.html in case of error
-                    h = 'Sequence of {} NOT FOUND!!!!!'.format(ex)
-                info = template.format(title,title, h, add)
+                    head = 'Sequence of {} NOT FOUND!!!!!'.format(ex)
+                archive = template.format(t,t, head, add)
             #--Perform of geneCalc parameter (Practically the same as the previous parameter)
             elif list_resource == 'geneCalc':
                 #--OK RESPONSE
@@ -243,7 +284,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 else:
                     ex = resource.split('=')[1]
                 # We established the connection between our project and the web page where all the information comes out
-                link1 = (host + URL[3].format(ex))
+                link1 = (host + URLS[1].format(ex))
                 dictionary = {}
 
                 try:
@@ -253,7 +294,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     id = json_code[0]['id']
 
                     # We made it another time but this time with the intention of finding the request Info
-                    link2 = (host + URL[4].format(id))
+                    link2 = (host + URLS[2].format(id))
                     r1 = requests.get(link2, headers=headers)
                     json_code1 = r1.json()
                     # We need at least one 'IF' so we use another time the variable 'geneCalc'
@@ -267,9 +308,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         add += '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(length, percentage[0],percentage[1],percentage[2], percentage[3])
                         dictionary.update([('length', length), ('perc_A', percentage[0] + '%'), ('perc_C', percentage[1] + '%'),("perc_T", percentage[2] + '%'), ("perc_G", percentage[3] + '%')])
                         # Title in the case the gene introduce is valid(of template.html)
-                        title = 'Gene Calculations'.format(ex)
+                        t = 'Gene Calculations'.format(ex)
                         # Header in the case the gene introduce is valid(of template html)
-                        h = 'Calculations performed on gene {}'.format(ex)
+                        head = 'Calculations performed on gene {}'.format(ex)
 
 
                 # If the gene t is noy in data base (we use it to perform the error
@@ -278,10 +319,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     add = 'No Gene {} Found'.format(ex)
                     dictionary.update([('WARNING', 'No Gene {} Found'.format(ex))])
                     # Give a title to the template.html in case of error
-                    title = 'ERROR'
+                    t = 'ERROR'
                     # Give a header to the template.html in case of error
-                    h = 'Sequence of {} NOT FOUND!!!!!'.format(ex)
-                info = template.format(title, title, h, add)
+                    head = 'Sequence of {} NOT FOUND!!!!!'.format(ex)
+                archive = template.format(t, t, head, add)
 
             #--Perform of geneInfo parameter
             # Nearly the same as the previous ones
@@ -294,7 +335,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 else:
                     ex = resource.split('=')[1]
                 # We established the connection between our project and the web page where all the information comes out
-                link1 = (host + URL[3].format(ex))
+                link1 = (host + URLS[1].format(ex))
                 dictionary = {}
 
                 try:
@@ -304,7 +345,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     id = json_code[0]['id']
 
                     # We made it another time but this time with the intention of finding the request Info
-                    link2 = (host + URL[4].format(id))
+                    link2 = (host + URLS[2].format(id))
                     r1 = requests.get(link2, headers=headers)
                     json_code1 = r1.json()
 
@@ -322,9 +363,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         add += '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(chromo, id, length, start_point, end_point )
                         dictionary.update([('chromo', chromo), ('id', id), ('length', length), ('start', start_point), ('end', end_point)])
                         # We established a title for our template.html
-                        title = 'Gene Information'
+                        t = 'Gene Information'
                         # We established a header for our template.html
-                        h = 'Information about gene {}'.format(ex)
+                        head = 'Information about gene {}'.format(ex)
 
 
 
@@ -334,29 +375,30 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     add = 'No Gene {} Found'.format(ex)
                     dictionary.update([('WARNING', 'No Gene {} Found'.format(ex))])
                     # We give a title to our template.html in case of error
-                    title = 'ERROR'
+                    t = 'ERROR'
                     # We give a header to our template.html in case of error
-                    h = 'Sequence of {} NOT FOUND!!!!!'.format(ex)
-                info = template.format(title,title, h, add)
+                    head = 'Sequence of {} NOT FOUND!!!!!'.format(ex)
+                archive = template.format(t,t, head, add)
             else:
                 #If they use other endpoints
                 resp = 404
-                info = template.format("Error 404", "Error 404", "PAGE NOT FOUND", templateError.format("PAGE NOT FOUND", resource))
+                # To fill the template.html in case of principally wrong error
+                archive = template.format("Error 404", "Error 404", "PAGE NOT FOUND", templateError.format("PAGE NOT FOUND", resource))
 
 
         except Exception as e:
             print(str(e))
-            # If an exception is raised, I send back an error message
+            # In case another error appear
             resp = 500
-            # Include the information in the future html response text
-            info = template.format("Error", "Error", "Error de la aplicación", templateError.format("Error de la aplicación", str(e) + '\n' + ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))
+            # We fill the template.html in case and unexpected error occur include a tracer that show the error and where it is
+            archive = template.format("Error", "Error", "Error de la aplicación", templateError.format("Error de la aplicación", str(e) + '\n' + ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))
 
 
         # Beginning of web server answer
 
         #It write the Response.html
         d = open('Response.html', 'w')
-        d.write(info)
+        d.write(archive)
         d.close()
 
         # It read the Response.html
