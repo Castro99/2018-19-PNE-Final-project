@@ -16,6 +16,7 @@ socketserver.TCPServer.allow_reuse_address = True
 with open('template.html', 'r') as f:
     template: str = f.read()
 
+
 with open('Error.html', 'r') as f:
     templateError: str = f.read()
 
