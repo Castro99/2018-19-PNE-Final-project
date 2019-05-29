@@ -17,7 +17,7 @@ with open('template.html', 'r') as f:
     template: str = f.read()
 
 
-with open('Error.html', 'r') as f:
+with open('error.html', 'r') as f:
     templateError: str = f.read()
 
 #Basic structure from Lesson 17 of JSON & API
@@ -54,7 +54,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 archive = template.format(title, title, h, content)
 
             # --Perform of List species parameter
-            elif list_resource == '/listSpecies':
+            elif list_resource == 'listSpecies':
 
                 resp = 200
                 # We established the connection between our project and the web page where all the information comes out
@@ -112,7 +112,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 # We fill the template html with the title and header previously define
                 archive = template.format(t, t, head, add)
             # --Perform of Chromosome length parameter
-            elif list_resource == '/chromosomeLength':
+            elif list_resource == 'chromosomeLength':
                 # --OK RESPONSE
                 resp = 200
                 # We define the variable specie and chromo for both outputs depending on what of them the user pick (Based on JSON values)
@@ -129,12 +129,18 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
                 dictionary = {}
                 if r.ok:
-                    # We introduce the headers of the table where are results will be post
-                    add = '<table class="table"><thead><tr><th scope="col">Length</th></tr></thead><tbody>'
                     json_code = r.json()
-                    # We complete the table with the length
-                    add +='<tr><td>{}</td></tr>'.format(json_code['length'])
-                    dictionary.update([('length', json_code['length'])])
+                    if not ('length' in json_code) :
+                        add = 'Specie "{}" chromosome "{}" not found'.format(specie, chromo)
+                        dictionary.update([('Error', 'Specie {} chromosome {} not found'.format(specie, chromo))])
+                    else:
+                        # We introduce the headers of the table where are results will be post
+                        add = '<table class="table"><thead><tr><th scope="col">Length</th></tr></thead><tbody>'
+                        # We complete the table with the length
+                        add +='<tr><td>{}</td></tr>'.format(json_code['length'])
+                        # We close the table
+                        add +='</tbody></table>'
+                        dictionary.update([('length', json_code['length'])])
                 else:
                     add = 'Specie "{}" chromosome "{}" not found'.format(specie, chromo)
                     dictionary.update([('Error', 'Specie {} chromosome {} not found'.format(specie, chromo))])
@@ -146,7 +152,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 archive = template.format(t, t, head, add)
 
             # --Perform of Karyotipe parameter
-            elif list_resource == '/karyotype' :
+            elif list_resource == 'karyotype' :
                 #--OK RESPONSE
                 resp = 200
                 #We define the variable specie in booth cases depending on what of the two of them the user pick
@@ -218,6 +224,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                             # Table with the Gene number and its Name
                             add += '<tr><td>{}</td><td>{}</td></tr>'.format(i, json_code[i]['external_name'])
                             dictionary.update([(str(i), json_code[i]['external_name'])])
+                        # We close the table
+                        add +='</tbody></table>'
                 # As we use the 'TRY' we need and except or finally so i select the except and use it to perform the error
                 except Exception:
                     add = 'No genes located in chromosome {} from start point {} & end point{}'.format(chromo, start_point, end_point)
@@ -257,7 +265,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         add = '<table class="table"><thead><tr><th scope="col">SEQUENCE</th></tr></thead><tbody>'
                         # Now we introduce the result in the table using another time the add
                         add +='<tr><td>{}</td></tr>'.format(json_code1['seq'])
-
+                        # We close the table
+                        add +='</tbody></table>'
                         dictionary.update([('sequence', json_code1['seq'])])
                         # We established a title for our template.html in case it is valid
                         t = 'Gene Sequence'
@@ -307,6 +316,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         # Now we perform a table in the first add we introduce the headers and in the second is where our result will be post
                         add = '<table class="table"><thead><tr><th scope="col">LENGTH</th><th scope="col">A (%)</th><th scope="col">C (%)</th><th scope="col">T (%)</th><th scope="col">G (%)</th></tr></thead><tbody>'
                         add += '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(length, percentage[0],percentage[1],percentage[2], percentage[3])
+                        # We close the table
+                        add +='</tbody></table>'
                         dictionary.update([('length', length), ('perc_A', percentage[0] + '%'), ('perc_C', percentage[1] + '%'),("perc_T", percentage[2] + '%'), ("perc_G", percentage[3] + '%')])
                         # Title in the case the gene introduce is valid(of template.html)
                         t = 'Gene Calculations'.format(ex)
@@ -362,6 +373,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         # We perform a table with their headers and results
                         add = '<table class="table"><thead><tr><th scope="col">Chromo</th><th scope="col">Id</th><th scope="col">Length</th><th scope="col">Start Point</th><th scope="col">End Point</th></tr></thead><tbody>'
                         add += '<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(chromo, id, length, start_point, end_point )
+                        # We close the table
+                        add +='</tbody></table>'
                         dictionary.update([('chromo', chromo), ('id', id), ('length', length), ('start', start_point), ('end', end_point)])
                         # We established a title for our template.html
                         t = 'Gene Information'
@@ -397,15 +410,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         # Beginning of web server answer
 
-        #It write the Response.html
-        d = open('Response.html', 'w')
-        d.write(archive)
-        d.close()
-
-        # It read the Response.html
-        d = open('Response.html', 'r')
-        content = d.read()
-        d.close()
+        content = archive
 
         content_type = 'text/html'
 
@@ -413,7 +418,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             content_type = 'application/json'
             content = dictionary
 
-        # Send the headers with different contents  and the Request.html
+        # Send the headers with different contents
         self.send_response(resp)
         self.send_header('Content-Type', content_type)
         self.send_header('Content-Length', len(str.encode(content)))
