@@ -19,7 +19,7 @@ http://localhost:8000/listSpecies?limit=
 				<td>ficedula_albicollis</td> // column 1
 				<td>Collared flycatcher</td> // column 2
 			</tr>
-			// A lot of species between
+			(...)
 			<tr>
 				<td>crocodylus_porosus</td>  //column 1
 				<td>Australian saltwater crocodile</td>  //column 2
